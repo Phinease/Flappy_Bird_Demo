@@ -3,7 +3,10 @@ import javax.swing.*;
 public class Main extends JFrame {
 
     public Main(String name){
-        Affichage panel = new Affichage();
+        Etat etat = new Etat();
+        Affichage panel = new Affichage(etat);
+        Control control = new Control(etat, panel);
+        panel.addMouseListener(control);
 
         this.setName(name);
         this.add(panel);
