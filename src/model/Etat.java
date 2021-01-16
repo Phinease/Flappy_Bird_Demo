@@ -27,6 +27,7 @@ public class Etat {
         if (Y_OVAL < 0) Y_OVAL = 0;
     }
 
+    // Ajouter le point actuel dans le chemin
     public void addHistory() {
         history.add(Y_OVAL + HAUT_OVAL / 2);
         if (history.size() > 100) history = new ArrayList<>(history.subList(history.size() - 100, history.size()));
