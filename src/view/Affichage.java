@@ -4,19 +4,11 @@ import model.Etat;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Affichage extends JPanel {
     private final Etat etat;
-
     public static final int LARG = 800;
     public static final int HAUT = 800;
-    public static final int LARG_OVAL = 20;
-    public static final int HAUT_OVAL = 100;
-    public static final int X_OVAL = 50;
-
-    public ArrayList<Integer> history = new ArrayList<>();
-
 
     public Affichage(Etat e) {
         etat = e;
@@ -30,24 +22,21 @@ public class Affichage extends JPanel {
 
         // dessiner l'oiseau
         g.setColor(Color.RED);
-        g.drawOval(X_OVAL, etat.getHauteur(), LARG_OVAL, HAUT_OVAL);
+        g.drawOval(Etat.X_OVAL, etat.getHauteur(), Etat.LARG_OVAL, Etat.HAUT_OVAL);
 
         // dessiner la trace
-        int size = history.size();
-        int LINEX = X_OVAL + LARG_OVAL / 2;
+        int size = etat.getSizeHistory();
+        int LINEX = Etat.X_OVAL + Etat.LARG_OVAL / 2;
 
         g.setColor(Color.BLUE);
         for (int i = 1; i < size; i++) {
-            g.drawLine(LINEX + (i - 1) * 10, history.get(size - i), LINEX + i * 10, history.get(size - 1 - i));
+            g.drawLine(LINEX + (i - 1) * 10, etat.getHistory(size - i), LINEX + i * 10, etat.getHistory(size - 1 - i));
         }
     }
 
     // Utilisé par le controleur et le timer pour indique la vue que l'image a changé
     public void change() {
-        history.add(etat.getHauteur() + HAUT_OVAL / 2);
-        if (history.size() > 100) {
-            history = new ArrayList<>(history.subList(history.size() - 100, history.size()));
-        }
+        etat.addHistory();
         repaint();
     }
 }
