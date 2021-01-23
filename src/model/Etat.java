@@ -1,5 +1,7 @@
 package model;
 
+import control.Control;
+
 import java.util.ArrayList;
 
 public class Etat {
