@@ -3,6 +3,7 @@ package control;
 import model.Etat;
 import view.Affichage;
 
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -18,8 +19,13 @@ public class Control implements MouseListener {
     // si la souris a cliqué, sauter et dire l'interface
     @Override
     public void mouseClicked(MouseEvent e) {
-        etat.jump();
-        vue.change();
+        if (SwingUtilities.isLeftMouseButton(e)) {
+            etat.jump();
+            vue.change();
+        } else if (SwingUtilities.isRightMouseButton(e)) {
+            etat.moveDown();
+            vue.change();
+        }
     }
 
     @Override

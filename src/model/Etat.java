@@ -1,43 +1,64 @@
 package model;
 
-import control.Control;
-
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Etat {
-    public static final int JUMP_HEIGHT = 60;
+    public static final int SAUT = 60;
     public static final int X_OVAL = 50;
 
-    public int Y_OVAL = 0;
-    private ArrayList<Integer> history = new ArrayList<>();
+    private int MAX_Y;
+    private int Y_OVAL = 400;
+    private boolean dead = false;
+    private final Parcours parcours;
+    private final Avancer avancer;
+    private final Collosion collosion;
+
+    public Etat() {
+        parcours = new Parcours();
+        avancer = new Avancer(parcours);
+        collosion = new Collosion(this);
+    }
 
     // chaque délai, l'oiseau tombe un peu
-    public void drop() {
+    public void moveDown() {
+        Y_OVAL -= SAUT;
+        if (Y_OVAL < 0) Y_OVAL = 0;
+    }
+
+    public void drop(){
         Y_OVAL -= 2;
         if (Y_OVAL < 0) Y_OVAL = 0;
     }
 
-    public int getHauteur(int max) {
-        if (Y_OVAL > max) Y_OVAL = max;
+    public int getHauteur() {
         return Y_OVAL;
+    }
+
+    public void setMax(int MAX_Y) {
+        this.MAX_Y = MAX_Y;
     }
 
     // chaque click, l'oiseau saute mais jamais hors des limites
     public void jump() {
-        Y_OVAL += JUMP_HEIGHT;
+        Y_OVAL += SAUT;
+        if (Y_OVAL > MAX_Y) Y_OVAL = MAX_Y;
     }
 
-    // Ajouter le point actuel dans le chemin
-    public void addHistory() {
-        history.add(Y_OVAL);
-        if (history.size() > 100) history = new ArrayList<>(history.subList(history.size() - 100, history.size()));
+    public ArrayList<Point> getParcours() {
+        return parcours.getParcours();
     }
 
-    public int getHistory(int i) {
-        return history.get(i);
+    public void startParcours(int largeur, int hauteur) {
+        parcours.startParcours(largeur, hauteur);
+
     }
 
-    public int getSizeHistory() {
-        return history.size();
+    public boolean getDead(){
+        return dead;
+    }
+
+    public void setDead(boolean d) {
+        dead = d;
     }
 }
