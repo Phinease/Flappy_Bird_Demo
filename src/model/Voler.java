@@ -16,9 +16,9 @@ public class Voler extends Thread {
     public void run() {
         while (true) {
             try{
+                Thread.sleep(16);
                 etat.drop();
                 view.change();
-                Thread.sleep(16);
             } catch (Exception e) {
                 e.printStackTrace();
             }

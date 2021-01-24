@@ -33,6 +33,7 @@ public class Parcours extends Thread {
             try {
                 Thread.sleep(500);
 
+                // Chaque 500 nanosecounds, vérifier si la parcour est assez, si non ajouter
                 Point last = parcours.get(parcours.size() - 1);
                 if (last.x < LARGEUR_FENETRE) {
                     int length = 30 + random.nextInt(step);
@@ -41,10 +42,6 @@ public class Parcours extends Thread {
                 }
 
                 // System.out.println("Size: " + parcours.size());
-
-                if (parcours.size() > 50) {
-                    parcours = new ArrayList<>(parcours.subList(parcours.size() - 30, parcours.size()));
-                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -52,6 +49,7 @@ public class Parcours extends Thread {
     }
 
     public ArrayList<Point> getParcours() {
+        // Éliminer les points innutiles avant de passer à etat
         Point first = parcours.get(0);
         for (Point point : parcours) {
             first = point;

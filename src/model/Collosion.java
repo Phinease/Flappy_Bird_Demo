@@ -21,6 +21,9 @@ public class Collosion extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+            // Trouver les points de parcours qui sont just avant et just après d'oval
+            // Calculer leur pente pour trouver l'axes y où cette ligne coïncide avec le centre de l'oval
             Point PointBefore, PointAfter;
             ArrayList<Point> points = etat.getParcours();
 
@@ -37,6 +40,7 @@ public class Collosion extends Thread {
             double pente = ((double) PointAfter.y - PointBefore.y) / (PointAfter.x - PointBefore.x);
             int dist = x - PointBefore.x;
             int HeightCritical = PointBefore.y + (int) (pente * dist);
+            // Si la distance a dépassé la moitié de l'hauteur de l'oval, indiquer l'etat
             etat.setDead(Math.abs(HeightCritical - (800 - etat.getHauteur() - 100 + 50)) > 50);
         }
     }

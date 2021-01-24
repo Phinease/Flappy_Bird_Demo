@@ -10,6 +10,7 @@ public class Etat {
     private int MAX_Y;
     private int Y_OVAL = 400;
     private boolean dead = false;
+
     private final Parcours parcours;
     private final Avancer avancer;
     private final Collosion collosion;
@@ -26,17 +27,9 @@ public class Etat {
         if (Y_OVAL < 0) Y_OVAL = 0;
     }
 
-    public void drop(){
+    public void drop() {
         Y_OVAL -= 2;
         if (Y_OVAL < 0) Y_OVAL = 0;
-    }
-
-    public int getHauteur() {
-        return Y_OVAL;
-    }
-
-    public void setMax(int MAX_Y) {
-        this.MAX_Y = MAX_Y;
     }
 
     // chaque click, l'oiseau saute mais jamais hors des limites
@@ -49,16 +42,24 @@ public class Etat {
         return parcours.getParcours();
     }
 
-    public void startParcours(int largeur, int hauteur) {
-        parcours.startParcours(largeur, hauteur);
-
+    public int getHauteur() {
+        return Y_OVAL;
     }
 
-    public boolean getDead(){
+    public boolean getDead() {
         return dead;
+    }
+
+    public void setMax(int MAX_Y) {
+        this.MAX_Y = MAX_Y;
     }
 
     public void setDead(boolean d) {
         dead = d;
+    }
+
+    // Donner les données à Parcours pour produire des points
+    public void startParcours(int largeur, int hauteur) {
+        parcours.startParcours(largeur, hauteur);
     }
 }
