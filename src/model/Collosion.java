@@ -41,7 +41,7 @@ public class Collosion extends Thread {
             int dist = x - PointBefore.x;
             int HeightCritical = PointBefore.y + (int) (pente * dist);
             // Si la distance a dépassé la moitié de l'hauteur de l'oval, indiquer l'etat
-            etat.setDead(Math.abs(HeightCritical - (800 - etat.getHauteur() - 100 + 50)) > 50);
+            etat.testPerdu(Math.abs(HeightCritical - (800 - etat.getHauteur() - 100 + 50)) > 50);
         }
     }
 }

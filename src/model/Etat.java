@@ -4,12 +4,12 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Etat {
-    public static final int SAUT = 60;
+    public static final int SAUT = 80;
     public static final int X_OVAL = 50;
 
     private int MAX_Y;
     private int Y_OVAL = 400;
-    private boolean dead = false;
+    private boolean perdu = false;
 
     private final Parcours parcours;
     private final Avancer avancer;
@@ -46,16 +46,16 @@ public class Etat {
         return Y_OVAL;
     }
 
-    public boolean getDead() {
-        return dead;
+    public boolean getPerdu() {
+        return perdu;
     }
 
     public void setMax(int MAX_Y) {
         this.MAX_Y = MAX_Y;
     }
 
-    public void setDead(boolean d) {
-        dead = d;
+    public void testPerdu(boolean d) {
+        perdu = d;
     }
 
     // Donner les données à Parcours pour produire des points

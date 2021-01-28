@@ -25,30 +25,34 @@ public class Affichage extends JPanel {
         // nettoyer l'image
         super.paint(g);
 
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setFont(new Font("Arial", Font.PLAIN, 32));
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         // dessiner l'oiseau
         int hauteur = etat.getHauteur();
-        g.setColor(Color.RED);
-        g.drawOval(Etat.X_OVAL, HAUTEUR_FENETRE - hauteur - HAUT_OVAL, LARG_OVAL, HAUT_OVAL);
+        g2.setStroke(new BasicStroke(3.0f));
+        g2.setColor(Color.RED);
+        g2.drawOval(Etat.X_OVAL, HAUTEUR_FENETRE - hauteur - HAUT_OVAL, LARG_OVAL, HAUT_OVAL);
 
         // dessiner la collision
-        if (etat.getDead()) {
-            g.setColor(Color.BLUE);
-            g.drawString("Collision", 600, 600);
+        if (etat.getPerdu()) {
+            g2.setColor(Color.BLUE);
+            g2.drawString("Perdu", 0, 32);
         }
 
         // dessiner la trace
-        g.setColor(Color.BLACK);
+        g2.setColor(Color.BLACK);
         ArrayList<Point> points = etat.getParcours();
         Point last_point = points.get(0);
         for (int i = 1; i < points.size(); i++) {
             Point point = points.get(i);
-            g.drawLine(last_point.x, last_point.y, point.x, point.y);
+            g2.drawLine(last_point.x, last_point.y, point.x, point.y);
             last_point = point;
         }
 
         // dessiner la documentation
-        g.drawString("clic gauche: sauter", 600, 100);
-        g.drawString("clic-droit: tomber", 600, 120);
+        g2.drawString("clic gauche : sauter", 0, HAUTEUR_FENETRE-50);
+        g2.drawString("clic droit  : tomber", 0, HAUTEUR_FENETRE-15);
     }
 
     // Utilisé par le controleur et le timer pour indique la vue que l'image a changé
