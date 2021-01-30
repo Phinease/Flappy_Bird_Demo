@@ -8,16 +8,23 @@ import java.util.ArrayList;
 
 public class Affichage extends JPanel {
     private final Etat etat;
+    private final VueOiseau vueOiseau;
+    private final NewOiseau newOiseau;
+
     public static final int LARGEUR_FENETRE = 800;
     public static final int HAUTEUR_FENETRE = 800;
     public static final int LARG_OVAL = 20;
     public static final int HAUT_OVAL = 100;
 
     public Affichage(Etat e) {
+        this.setPreferredSize(new Dimension(LARGEUR_FENETRE, HAUTEUR_FENETRE));
+
         etat = e;
         etat.setMax(HAUTEUR_FENETRE - HAUT_OVAL);
-        this.setPreferredSize(new Dimension(LARGEUR_FENETRE, HAUTEUR_FENETRE));
         etat.startParcours(LARGEUR_FENETRE, HAUTEUR_FENETRE);
+
+        vueOiseau = new VueOiseau();
+        newOiseau = new NewOiseau(vueOiseau);
     }
 
     @Override
@@ -53,6 +60,8 @@ public class Affichage extends JPanel {
         // dessiner la documentation
         g2.drawString("clic gauche : sauter", 0, HAUTEUR_FENETRE-50);
         g2.drawString("clic droit  : tomber", 0, HAUTEUR_FENETRE-15);
+
+        vueOiseau.dessiner(g);
     }
 
     // Utilisé par le controleur et le timer pour indique la vue que l'image a changé
