@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>control.Control</OriginalElement>
+  <nodes>
+    <node x="212.0" y="304.5">model.Collosion</node>
+    <node x="109.15833333333336" y="1258.0">model.Voler</node>
+    <node x="408.639" y="293.0">view.VueOiseau</node>
+    <node x="496.639" y="0.0">view.Oiseau</node>
+    <node x="73.33333333333337" y="471.0">model.Etat</node>
+    <node x="0.0" y="316.0">model.Avancer</node>
+    <node x="420.6583333333333" y="922.0">view.Affichage</node>
+    <node x="9.097333333333324" y="23.0">model.Parcours</node>
+    <node x="407.3006666666667" y="620.5">view.NewOiseau</node>
+    <node x="285.1583333333333" y="1212.0">control.Control</node>
+    <node x="221.43400000000008" y="1479.0">Main</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="model.Avancer" target="model.Parcours">
+      <point x="45.0" y="-41.0" />
+      <point x="135.0" y="268.0" />
+      <point x="115.59733333333332" y="268.0" />
+      <point x="-35.5" y="98.5" />
+    </edge>
+    <edge source="view.Affichage" target="model.Etat">
+      <point x="-40.80000000000001" y="-110.0" />
+      <point x="481.85833333333335" y="872.0" />
+      <point x="339.58333333333337" y="872.0" />
+      <point x="124.25" y="190.5" />
+    </edge>
+    <edge source="model.Etat" target="model.Parcours">
+      <point x="-71.00000000000003" y="-190.5" />
+      <point x="144.33333333333334" y="441.0" />
+      <point x="190.5" y="441.0" />
+      <point x="190.5" y="268.0" />
+      <point x="186.59733333333332" y="268.0" />
+      <point x="35.5" y="98.5" />
+    </edge>
+    <edge source="Main" target="control.Control">
+      <point x="27.99999999999997" y="-29.0" />
+      <point x="347.4340000000001" y="1439.0" />
+      <point x="498.1583333333333" y="1439.0" />
+      <point x="71.0" y="98.5" />
+    </edge>
+    <edge source="view.NewOiseau" target="view.VueOiseau">
+      <point x="49.0" y="-41.0" />
+      <point x="554.3006666666668" y="451.0" />
+      <point x="533.139" y="451.0" />
+      <point x="-41.5" y="64.0" />
+    </edge>
+    <edge source="view.Affichage" target="view.NewOiseau">
+      <point x="0.0" y="-110.0" />
+      <point x="522.6583333333333" y="902.0" />
+      <point x="505.3006666666667" y="902.0" />
+      <point x="0.0" y="41.0" />
+    </edge>
+    <edge source="Main" target="model.Voler">
+      <point x="-28.00000000000003" y="-29.0" />
+      <point x="291.4340000000001" y="1439.0" />
+      <point x="187.15833333333336" y="1439.0" />
+      <point x="0.0" y="52.5" />
+    </edge>
+    <edge source="view.Affichage" target="view.VueOiseau">
+      <point x="40.799999999999955" y="-110.0" />
+      <point x="563.4583333333333" y="892.0" />
+      <point x="613.8006666666668" y="892.0" />
+      <point x="613.8006666666668" y="451.0" />
+      <point x="616.1390000000001" y="451.0" />
+      <point x="41.50000000000003" y="64.0" />
+    </edge>
+    <edge source="Main" target="view.Affichage">
+      <point x="83.99999999999997" y="-29.0" />
+      <point x="403.4340000000001" y="1459.0" />
+      <point x="609.5506666666668" y="1459.0" />
+      <point x="609.5506666666668" y="1192.0" />
+      <point x="607.6583333333333" y="1192.0" />
+      <point x="85.00000000000003" y="110.0" />
+    </edge>
+    <edge source="model.Voler" target="view.Affichage">
+      <point x="58.5" y="-52.5" />
+      <point x="245.65833333333336" y="1182.0" />
+      <point x="471.6583333333333" y="1182.0" />
+      <point x="-51.0" y="110.0" />
+    </edge>
+    <edge source="view.VueOiseau" target="view.Oiseau">
+      <point x="110.66666666666663" y="-64.0" />
+      <point x="685.3056666666666" y="268.0" />
+      <point x="626.6390000000001" y="268.0" />
+      <point x="52.0" y="121.5" />
+    </edge>
+    <edge source="model.Etat" target="model.Collosion">
+      <point x="23.666666666666657" y="-190.5" />
+      <point x="239.00000000000003" y="451.0" />
+      <point x="233.5" y="451.0" />
+      <point x="-43.0" y="52.5" />
+    </edge>
+    <edge source="Main" target="model.Etat">
+      <point x="-84.00000000000003" y="-29.0" />
+      <point x="235.43400000000005" y="1459.0" />
+      <point x="87.65833333333336" y="1459.0" />
+      <point x="87.65833333333336" y="902.0" />
+      <point x="91.08333333333337" y="902.0" />
+      <point x="-124.25" y="190.5" />
+    </edge>
+    <edge source="control.Control" target="view.Affichage">
+      <point x="106.5" y="-98.5" />
+      <point x="533.6583333333333" y="1192.0" />
+      <point x="539.6583333333333" y="1192.0" />
+      <point x="17.0" y="110.0" />
+    </edge>
+    <edge source="model.Collosion" target="model.Etat">
+      <point x="43.0" y="52.5" />
+      <point x="319.5" y="451.0" />
+      <point x="333.6666666666667" y="451.0" />
+      <point x="118.33333333333331" y="-190.5" />
+    </edge>
+    <edge source="model.Voler" target="model.Etat">
+      <point x="-19.5" y="-52.5" />
+      <point x="167.65833333333336" y="902.0" />
+      <point x="197.58333333333337" y="902.0" />
+      <point x="-17.75" y="190.5" />
+    </edge>
+    <edge source="model.Etat" target="model.Avancer">
+      <point x="-118.33333333333337" y="-190.5" />
+      <point x="97.0" y="451.0" />
+      <point x="90.0" y="451.0" />
+      <point x="0.0" y="41.0" />
+    </edge>
+    <edge source="control.Control" target="model.Etat">
+      <point x="-35.5" y="-98.5" />
+      <point x="391.6583333333333" y="1162.0" />
+      <point x="380.5506666666667" y="1162.0" />
+      <point x="380.5506666666667" y="892.0" />
+      <point x="268.58333333333337" y="892.0" />
+      <point x="53.25" y="190.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8259473346178549" x="370.5" y="768.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>Project Files</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

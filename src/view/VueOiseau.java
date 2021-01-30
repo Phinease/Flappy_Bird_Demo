@@ -32,6 +32,6 @@ public class VueOiseau {
     }
 
     public void generer() {
-        if (random.nextDouble() > 0.98) oiseaus.add(new Oiseau());
+        if (random.nextDouble() > 0.98 && oiseaus.size() < 2) oiseaus.add(new Oiseau());
     }
 }

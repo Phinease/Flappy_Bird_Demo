@@ -12,13 +12,11 @@ public class Etat {
     private boolean perdu = false;
 
     private final Parcours parcours;
-    private final Avancer avancer;
-    private final Collosion collosion;
 
     public Etat() {
         parcours = new Parcours();
-        avancer = new Avancer(parcours);
-        collosion = new Collosion(this);
+        new Avancer(parcours);
+        new Collosion(this);
     }
 
     // chaque délai, l'oiseau tombe un peu

@@ -7,12 +7,12 @@ import javax.swing.*;
 
 public class Main extends JFrame {
 
-    public Main(String name){
+    public Main(String name) {
         // Initialisation de MVC
         Etat etat = new Etat();
         Affichage panel = new Affichage(etat);
         Control control = new Control(etat, panel);
-        Voler voler = new Voler(etat, panel);
+        new Voler(etat, panel);
 
         // Ajouter le controleur dans l'interface
         panel.addMouseListener(control);
@@ -26,6 +26,6 @@ public class Main extends JFrame {
     }
 
     public static void main(String[] args) {
-        Main main = new Main("Flappt Bird");
+        new Main("Flappt Bird");
     }
 }

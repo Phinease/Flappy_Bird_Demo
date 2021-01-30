@@ -15,7 +15,7 @@ public class Voler extends Thread {
     @Override
     public void run() {
         while (true) {
-            try{
+            try {
                 Thread.sleep(16);
                 etat.drop();
                 view.change();
