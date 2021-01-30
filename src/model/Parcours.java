@@ -17,12 +17,13 @@ public class Parcours extends Thread {
         Point p = new Point(60, hauteur / 2);
 
         parcours.add(p);
-        for (int i = 1; i < 20; i++) {
+        for (int i = 1; i < 21; i++) {
             int length = 30 + random.nextInt(step);
             int new_y = p.y + (int) ((random.nextDouble() * 2 - 1) * length);
             parcours.add(new Point(p.x + length, Math.max(new_y, 0)));
             p = parcours.get(i);
         }
+        System.out.println(parcours.size());
 
         start();
     }
@@ -35,12 +36,19 @@ public class Parcours extends Thread {
 
                 // Chaque 500 nanosecounds, vérifier si la parcour est assez, si non ajouter
                 Point last = parcours.get(parcours.size() - 1);
-                if (last.x < LARGEUR_FENETRE) {
-                    int length = 30 + random.nextInt(step);
-                    int new_y = last.y + (int) ((random.nextDouble() * 2 - 1) * length);
-                    parcours.add(new Point(last.x + length, Math.max(new_y, 0)));
-                }
+                if (last.x < LARGEUR_FENETRE - 30) {
+                    int lastY = last.y;
+                    int lastX = last.x;
+                    for (int i = 0; i < 2; i++) {
+                        int length = 30 + random.nextInt(step);
+                        int new_y = lastY + (int) ((random.nextDouble() * 2 - 1) * length);
 
+                        lastX += length;
+                        lastY = Math.max(new_y, 0);
+
+                        parcours.add(new Point(lastX, lastY));
+                    }
+                }
                 // System.out.println("Size: " + parcours.size());
             } catch (Exception e) {
                 e.printStackTrace();
@@ -50,13 +58,9 @@ public class Parcours extends Thread {
 
     public ArrayList<Point> getParcours() {
         // Éliminer les points innutiles avant de passer à etat
-        Point first = parcours.get(0);
-        for (Point point : parcours) {
-            first = point;
-            if (point.x >= 0) break;
+        if (parcours.get(2).x < 0) {
+            parcours = new ArrayList<>(parcours.subList(2, parcours.size()));
         }
-        int start = parcours.indexOf(first);
-        parcours = new ArrayList<>(parcours.subList(Math.max(0, start - 1), parcours.size()));
         return parcours;
     }
 }

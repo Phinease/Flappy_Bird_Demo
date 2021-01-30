@@ -4,6 +4,8 @@ import model.Etat;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Point2D;
+import java.awt.geom.QuadCurve2D;
 import java.util.ArrayList;
 
 public class Affichage extends JPanel {
@@ -23,8 +25,11 @@ public class Affichage extends JPanel {
         etat.setMax(HAUTEUR_FENETRE - HAUT_OVAL);
         etat.startParcours(LARGEUR_FENETRE, HAUTEUR_FENETRE);
 
-        vueOiseau = new VueOiseau();
-        newOiseau = new NewOiseau(vueOiseau);
+        vueOiseau = null;
+        newOiseau = null;
+
+//        vueOiseau = new VueOiseau();
+//        newOiseau = new NewOiseau(vueOiseau);
     }
 
     @Override
@@ -32,7 +37,7 @@ public class Affichage extends JPanel {
         // nettoyer l'image
         super.paint(g);
 
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
         g2.setFont(new Font("Arial", Font.PLAIN, 32));
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         // dessiner l'oiseau
@@ -51,17 +56,26 @@ public class Affichage extends JPanel {
         g2.setColor(Color.BLACK);
         ArrayList<Point> points = etat.getParcours();
         Point last_point = points.get(0);
-        for (int i = 1; i < points.size(); i++) {
-            Point point = points.get(i);
-            g2.drawLine(last_point.x, last_point.y, point.x, point.y);
-            last_point = point;
+        for (int i = 1; i < points.size() - 1; i += 2) {
+            Point p1 = points.get(i);
+            Point p2 = points.get(i + 1);
+
+            QuadCurve2D courbe = new QuadCurve2D.Double();
+            Point2D debut = new Point2D.Double(last_point.x, last_point.y);
+            Point2D ctrl = new Point2D.Double(p1.x, p1.y);
+            Point2D fin = new Point2D.Double(p2.x, p2.y);
+
+            courbe.setCurve(debut, ctrl, fin);
+            g2.draw(courbe);
+
+            last_point = p2;
         }
 
         // dessiner la documentation
-        g2.drawString("clic gauche : sauter", 0, HAUTEUR_FENETRE-50);
-        g2.drawString("clic droit  : tomber", 0, HAUTEUR_FENETRE-15);
+        g2.drawString("clic gauche : sauter", 0, HAUTEUR_FENETRE - 50);
+        g2.drawString("clic droit  : tomber", 0, HAUTEUR_FENETRE - 15);
 
-        vueOiseau.dessiner(g);
+//        vueOiseau.dessiner(g);
     }
 
     // Utilisé par le controleur et le timer pour indique la vue que l'image a changé
