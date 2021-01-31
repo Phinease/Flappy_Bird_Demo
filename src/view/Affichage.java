@@ -25,7 +25,6 @@ public class Affichage extends JPanel {
         etat.startParcours(LARGEUR_FENETRE, HAUTEUR_FENETRE);
 
         vueOiseau = new VueOiseau();
-        new NewOiseau(vueOiseau);
     }
 
     @Override

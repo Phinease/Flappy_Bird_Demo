@@ -8,12 +8,15 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class VueOiseau {
+public class VueOiseau extends Thread {
+    // Liste de l'oiseau est CopyOnWriteArrayList pour assurer que la suppression de l'oiseau n'influence pas
+    // l'utilisation de l'oiseau
     private final CopyOnWriteArrayList<Oiseau> oiseaus = new CopyOnWriteArrayList<>();
     private final Random random = new Random();
 
     public VueOiseau() {
         oiseaus.add(new Oiseau());
+        start();
     }
 
     public void dessiner(Graphics g) {
@@ -33,5 +36,17 @@ public class VueOiseau {
 
     public void generer() {
         if (random.nextDouble() > 0.98 && oiseaus.size() < 2) oiseaus.add(new Oiseau());
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                Thread.sleep(100);
+                generer();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
