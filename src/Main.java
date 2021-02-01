@@ -4,6 +4,9 @@ import model.Voler;
 import view.Affichage;
 
 import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.security.Key;
 
 public class Main extends JFrame {
 
@@ -16,6 +19,7 @@ public class Main extends JFrame {
 
         // Ajouter le controleur dans l'interface
         panel.addMouseListener(control);
+        this.addKeyListener(control);
 
         // Confuguration de la fenêtre
         this.setName(name);
@@ -23,6 +27,7 @@ public class Main extends JFrame {
         this.pack();
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 
     public static void main(String[] args) {

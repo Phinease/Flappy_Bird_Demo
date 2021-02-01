@@ -4,11 +4,13 @@ import model.Etat;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.geom.Point2D;
 import java.awt.geom.QuadCurve2D;
 import java.util.ArrayList;
 
-public class Affichage extends JPanel {
+public class Affichage extends JPanel implements KeyListener {
     private final Etat etat;
     private final VueOiseau vueOiseau;
 
@@ -25,6 +27,7 @@ public class Affichage extends JPanel {
         etat.startParcours(LARGEUR_FENETRE, HAUTEUR_FENETRE);
 
         vueOiseau = new VueOiseau();
+        this.addKeyListener(this);
     }
 
     @Override
@@ -77,5 +80,20 @@ public class Affichage extends JPanel {
     public void change() {
         revalidate();
         repaint();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println("I'm Pressed2");
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
